@@ -430,9 +430,53 @@ void MyMesh::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSu
 	Release();
 	Init();
 
-	// Replace this with your code
-	GenerateCube(a_fOuterRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	float tubeRadius = (a_fOuterRadius - a_fInnerRadius) / 2;
+	float radiusToCenterTube = a_fInnerRadius + tubeRadius;
+	int count = a_nSubdivisionsA * a_nSubdivisionsB;
+
+	// storing all vertices
+	std::vector<std::vector<vector3>> vert;
+
+	// declaring angle measurements
+	GLfloat theta = 0;
+	GLfloat phi = 0;
+	GLfloat thetaChange = static_cast<GLfloat>(2 * PI / a_nSubdivisionsA);
+	GLfloat phiChange = static_cast<GLfloat>(2 * PI / a_nSubdivisionsB);
+
+	for (int i = 0; i < a_nSubdivisionsA; i++)
+	{
+		// creating the sides and shifting the angle
+		//vector3 tempTop = vector3(cos(angle) * a_fRadius, sin(angle) * a_fRadius, a_fHeight / 2);
+		//vertTop.push_back(tempTop);
+		//vector3 tempBot = vector3(cos(angle) * a_fRadius, sin(angle) * a_fRadius, -a_fHeight / 2);
+		//angle += angleChange;
+		//vertBot.push_back(tempBot);
+		std::vector<vector3> verts;
+		for (int j = 0; j < a_nSubdivisionsB; j++)
+		{
+			float x = (a_fOuterRadius + a_fInnerRadius * cos(theta)) * cos(phi);
+			float y = (a_fOuterRadius + a_fInnerRadius * cos(theta)) * sin(phi);
+			float z = a_fInnerRadius * sin(theta);
+			vector3 temp = vector3(x, y, z);
+			verts.push_back(temp);
+			phi += phiChange;
+		}
+		vert.push_back(verts);
+		theta += thetaChange;
+
+	}
+	// drawing all of the quads
+	for (int i = 0; i < a_nSubdivisionsA; i++)
+	{
+		for (int j = 0; j < a_nSubdivisionsB; j++)
+		{
+			vector3 vert1 = vert[i][j];
+			vector3 vert2 = vert[i][(j + 1) % a_nSubdivisionsB];
+			vector3 vert3 = vert[(i + 1) % a_nSubdivisionsA][j];
+			vector3 vert4 = vert[(i + 1) % a_nSubdivisionsA][(j + 1) % a_nSubdivisionsB];
+			AddQuad(vert1, vert2, vert3, vert4);
+		}
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
@@ -455,9 +499,59 @@ void MyMesh::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 	Release();
 	Init();
 
-	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	// storing all vertices
+	std::vector<std::vector<vector3>> vert;
+
+	// declaring angle measurements
+	GLfloat theta = 0;
+	GLfloat phi = 0;
+	GLfloat thetaChange = static_cast<GLfloat>(2 * PI / a_nSubdivisions);
+	GLfloat phiChange = static_cast<GLfloat>(PI / a_nSubdivisions);
+
+	for (int i = 0; i < a_nSubdivisions; i++)
+	{
+		// creating the sides and shifting the angle
+
+		std::vector<vector3> verts;
+
+		for (int j = 0; j < a_nSubdivisions; j++)
+		{
+			float u = a_fRadius * cos(phi);
+			float x = sqrt(pow(a_fRadius, 2) - pow(u, 2)) * cos(theta);
+			float y = sqrt(pow(a_fRadius, 2) - pow(u, 2)) * sin(theta);
+			float z = u;
+			vector3 temp = vector3(x, y, z);
+			theta += thetaChange;
+			verts.push_back(temp);
+		}
+
+		vert.push_back(verts);
+		phi += phiChange;
+	}
+	// drawing all the quads
+	for (int i = 0; i < a_nSubdivisions; i++)
+	{
+		for (int j = 0; j < a_nSubdivisions; j++)
+		{
+			// making an exception for the other point of the sphere
+			if (i == a_nSubdivisions - 1)
+			{
+				vector3 vert1 = vert[i][j];
+				vector3 vert2 = vert[i][(j + 1) % a_nSubdivisions];
+				vector3 vert3 = vector3(0.0f, 0.0f, -a_fRadius);
+				vector3 vert4 = vector3(0.0f, 0.0f, -a_fRadius);
+				AddQuad(vert1, vert3, vert2, vert4);
+			}
+			else
+			{
+				vector3 vert1 = vert[i][j];
+				vector3 vert2 = vert[i][(j + 1) % a_nSubdivisions];
+				vector3 vert3 = vert[(i + 1) % a_nSubdivisions][j];
+				vector3 vert4 = vert[(i + 1) % a_nSubdivisions][(j + 1) % a_nSubdivisions];
+				AddQuad(vert1, vert3, vert2, vert4);
+			}
+		}
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
