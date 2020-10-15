@@ -1,4 +1,5 @@
 #include "AppClass.h"
+using namespace Simplex;
 //Mouse
 void Application::ProcessMouseMovement(sf::Event a_event)
 {
@@ -129,6 +130,27 @@ void Application::ProcessKeyReleased(sf::Event a_event)
 					m_uActCont = 7;
 			}
 		}
+		break;
+	case sf::Keyboard::Num1:
+		m_uProjection = 1;
+		break;
+	case sf::Keyboard::Num2:
+		m_uProjection = 2;
+		break;
+	case sf::Keyboard::Num3:
+		m_uProjection = 3;
+		break;
+	case sf::Keyboard::Num4:
+		m_uProjection = 4;
+		break;
+	case sf::Keyboard::Num5:
+		m_uProjection = 5;
+		break;
+	case sf::Keyboard::Num6:
+		m_uProjection = 6;
+		break;
+	case sf::Keyboard::Num7:
+		m_uProjection = 7;
 		break;
 	}
 
@@ -377,8 +399,8 @@ void Application::CameraRotation(float a_fSpeed)
 		fAngleX += fDeltaMouse * a_fSpeed;
 	}
 	//Change the Yaw and the Pitch of the camera
-	m_pCameraMngr->ChangeYaw(fAngleY * 3.0f);
-	m_pCameraMngr->ChangePitch(-fAngleX * 3.0f);
+	m_pCameraMngr->ChangeYaw(fAngleY * 0.25f);
+	m_pCameraMngr->ChangePitch(-fAngleX * 0.25f);
 	SetCursorPos(CenterX, CenterY);//Position the mouse in the center
 }
 //Keyboard
@@ -414,26 +436,6 @@ void Application::ProcessKeyboard(void)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		m_pCameraMngr->MoveVertical(fSpeed);
 #pragma endregion
-	// changing the quaternion based on what axis key is held
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
-	{
-		quaternion q1 = glm::angleAxis(1.0f / 60.0f, vector3(1.0f, 0.0f, 0.0f));
-		m_qOrientation = m_qOrientation * q1;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
-	{
-		quaternion q1 = glm::angleAxis(1.0f / 60.0f, vector3(0.0f, 1.0f, 0.0f));
-		m_qOrientation = m_qOrientation * q1;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-	{
-		quaternion q1 = glm::angleAxis(1.0f / 60.0f, vector3(0.0f, 0.0f, 1.0f));
-		m_qOrientation = m_qOrientation * q1;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-	{
-		m_v3Rotation = vector3(0.0f);
-	}
 }
 //Joystick
 void Application::ProcessJoystick(void)
