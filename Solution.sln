@@ -119,6 +119,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "E08 - Projections", "E08Gin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A03 - Camera", "A03Gindhart\A03Gindhart.vcxproj", "{8AB3735C-85CC-4AB4-9B20-6F788441E11F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A04 - SAT", "A04Gindhart\A04Gindhart.vcxproj", "{E760ECC5-6675-4728-A7B0-C7380D821049}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -339,6 +341,10 @@ Global
 		{8AB3735C-85CC-4AB4-9B20-6F788441E11F}.Debug|x86.Build.0 = Debug|Win32
 		{8AB3735C-85CC-4AB4-9B20-6F788441E11F}.Release|x86.ActiveCfg = Release|Win32
 		{8AB3735C-85CC-4AB4-9B20-6F788441E11F}.Release|x86.Build.0 = Release|Win32
+		{E760ECC5-6675-4728-A7B0-C7380D821049}.Debug|x86.ActiveCfg = Debug|Win32
+		{E760ECC5-6675-4728-A7B0-C7380D821049}.Debug|x86.Build.0 = Debug|Win32
+		{E760ECC5-6675-4728-A7B0-C7380D821049}.Release|x86.ActiveCfg = Release|Win32
+		{E760ECC5-6675-4728-A7B0-C7380D821049}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
