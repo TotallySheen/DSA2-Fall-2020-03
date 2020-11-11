@@ -121,6 +121,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A03 - Camera", "A03Gindhart
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A04 - SAT", "A04Gindhart\A04Gindhart.vcxproj", "{E760ECC5-6675-4728-A7B0-C7380D821049}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A05 - Octree", "A05Gindhart\A05Gindhart.vcxproj", "{A479F84F-C9C6-4FDA-9A19-7D250BC1C9DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -345,6 +347,10 @@ Global
 		{E760ECC5-6675-4728-A7B0-C7380D821049}.Debug|x86.Build.0 = Debug|Win32
 		{E760ECC5-6675-4728-A7B0-C7380D821049}.Release|x86.ActiveCfg = Release|Win32
 		{E760ECC5-6675-4728-A7B0-C7380D821049}.Release|x86.Build.0 = Release|Win32
+		{A479F84F-C9C6-4FDA-9A19-7D250BC1C9DA}.Debug|x86.ActiveCfg = Debug|Win32
+		{A479F84F-C9C6-4FDA-9A19-7D250BC1C9DA}.Debug|x86.Build.0 = Debug|Win32
+		{A479F84F-C9C6-4FDA-9A19-7D250BC1C9DA}.Release|x86.ActiveCfg = Release|Win32
+		{A479F84F-C9C6-4FDA-9A19-7D250BC1C9DA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
